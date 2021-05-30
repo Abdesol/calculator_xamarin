@@ -99,6 +99,8 @@ namespace calculator_xamarin
             }
         }
         private int no_char = 0;
+        private int opt = 0;
+
         private async void back_clicked(object sender, EventArgs args)
         {
             Button btn = (Button)sender;
@@ -110,12 +112,18 @@ namespace calculator_xamarin
                 current_opt_below = equal(current_opt);
                 Main_number_add.Text = current_opt + " ";
                 second_number_add.Text = current_opt_below + "  ";
-                no_char -= 1;
+                no_char --;
+                char l = current_opt[current_opt.Length - 1];
+                if (l == '+' || l == '-' || l == '÷' || l == '×') {
+                    opt = 1;
+                }
+                else { 
+                    opt = 0;
+                }
             }
             btn.BackgroundColor = Color.Transparent;
 
         }
-        private int opt = 0;
 
         private int bra = 0;
         private void buttons_clicked(object sender, EventArgs args)
@@ -145,7 +153,7 @@ namespace calculator_xamarin
                             current_opt += "(";
                             bra = 1;
                             opt = 0;
-                            no_char += 1;
+                            no_char ++;
                         }
                         else
                         {
@@ -161,7 +169,7 @@ namespace calculator_xamarin
                                     current_opt += ")";
                                     bra = 0;
                                     opt = 0;
-                                    no_char += 1;
+                                    no_char ++;
                                 }
                             }
                         }
@@ -191,7 +199,7 @@ namespace calculator_xamarin
                                     {
                                         current_opt += btn_text;
                                         opt = 1;
-                                        no_char += 1;
+                                        no_char ++;
                                     }
                                 }
                             }
@@ -199,7 +207,7 @@ namespace calculator_xamarin
                             {
                                 current_opt += btn_text;
                                 opt = 1;
-                                no_char += 1;
+                                no_char ++;
                             }
                         }
                     }
@@ -207,7 +215,7 @@ namespace calculator_xamarin
                     {
                         current_opt += btn_text;
                         opt = 0;
-                        no_char += 1;
+                        no_char ++;
                     }
                 }
             }
