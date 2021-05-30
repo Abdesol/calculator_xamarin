@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="calculator_xamarin.MainPage">
+    <StackLayout VerticalOptions="End">
+        <Label x:Name="Main_number_add" HorizontalTextAlignment="End" FontSize="40" Text="" TextColor="White"></Label>
+        <Label HeightRequest="20"></Label>
+        <Label  x:Name="second_number_add" HorizontalTextAlignment="End" FontSize="30" Text="" TextColor="#C0C0C0"></Label>
+        <Label HeightRequest="60"></Label>
+        <Button WidthRequest="60" HeightRequest="60" Text="⌫" FontSize="25" HorizontalOptions="End" BackgroundColor="Transparent" Clicked="back_clicked"></Button>
+        <StackLayout Orientation="Horizontal" VerticalOptions="End">
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="clear_btn" WidthRequest="195" HeightRequest="70" Text="C" FontSize="25" TextColor="#C14B20" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="bracket_btn" WidthRequest="95" HeightRequest="70" Text="( )" FontSize="25" TextColor="#3ADA3F" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="div_btn"  WidthRequest="95" HeightRequest="70" Text="÷" FontSize="25" TextColor="#3ADA3F" Clicked="buttons_clicked"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="seven_btn"  WidthRequest="95" HeightRequest="70" Text="7" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="eight_btn"  WidthRequest="95" HeightRequest="70" Text="8" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="nine_btn"  WidthRequest="95" HeightRequest="70" Text="9" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="multi_btn"  WidthRequest="95" HeightRequest="70" Text="×" FontSize="25" TextColor="#3ADA3F" Clicked="buttons_clicked"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="four_btn"  WidthRequest="95" HeightRequest="70" Text="4" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="five_btn"  WidthRequest="95" HeightRequest="70" Text="5" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="six_btn"  WidthRequest="95" HeightRequest="70" Text="6" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="subtract_btn"  WidthRequest="95" HeightRequest="70" Text="-" FontSize="25" TextColor="#3ADA3F" Clicked="buttons_clicked"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="one_btn"  WidthRequest="95" HeightRequest="70" Text="1" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="two_btn"  WidthRequest="95" HeightRequest="70" Text="2" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="three_btn"  WidthRequest="95" HeightRequest="70" Text="3" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="add_btn"  WidthRequest="95" HeightRequest="70" Text="+" FontSize="25" TextColor="#3ADA3F" Clicked="buttons_clicked"></Button>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button x:Name="dot_btn"  WidthRequest="95" HeightRequest="70" Text="." FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="zero_btn"  WidthRequest="95" HeightRequest="70" Text="0" FontSize="25" Clicked="buttons_clicked"></Button>
+                    <Button x:Name="equal_btn"  WidthRequest="200" HeightRequest="70" Text="=" FontSize="35" BackgroundColor="#1FB924" TextColor="White" Clicked="buttons_clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <Label HeightRequest="60"></Label>
+    </StackLayout>
+
+</ContentPage>
