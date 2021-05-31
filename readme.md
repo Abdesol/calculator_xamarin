@@ -5,7 +5,7 @@ Hello, My name is Abdella Solomon, This is a Calculator that is made using xamar
 You can add, subtract, multiply and divde numbers.
 
 ## How to run the code?
-To run the code, you have to download the apk under the release page here https://github.com/Abdesol/calculator_xamarin/releases/tag/1.0 then, install it on your phone.
+To run the code, you have to download the apk under the release page here https://github.com/Abdesol/calculator_xamarin/releases/tag/1.1 then, install it on your phone.
 
 ## How it works?
 <img src="./demo.gif" width=640px height=1344px> 
