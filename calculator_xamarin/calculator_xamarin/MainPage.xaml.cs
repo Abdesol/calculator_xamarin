@@ -19,7 +19,6 @@ namespace calculator_xamarin
             "6", "-", "1", "2", "3", "+", ".","0", "Equal"
         };
 
-        private string AppTheme;
 
         public MainPage()
         {
@@ -42,27 +41,16 @@ namespace calculator_xamarin
             all_btns.Add(dot_btn);
             all_btns.Add(zero_btn);
             all_btns.Add(equal_btn);
-
             Xamarin.Essentials.AppTheme theme = AppInfo.RequestedTheme;
             switch (theme)
             {
-                case Xamarin.Essentials.AppTheme.Dark:
-                    AppTheme = "dark";
-                    break;
                 case Xamarin.Essentials.AppTheme.Light:
-                    AppTheme = "light";
+                    Main_number_add.TextColor = Color.Black;
                     break;
-                default:
-                    AppTheme = "light";
-                    break;
-            }
-            if(AppTheme == "light")
-            {
-                Main_number_add.TextColor = Color.Black;
             }
         }
-        private string current_opt;
-        private string current_opt_below;
+        private string current_opt = "";
+        private string current_opt_below = "";
         private string equal(string exp)
         {
             string new_expr = "";
@@ -101,25 +89,32 @@ namespace calculator_xamarin
         private int no_char = 0;
         private int opt = 0;
 
+        
         private async void back_clicked(object sender, EventArgs args)
-        {
+        {            
             Button btn = (Button)sender;
             btn.BackgroundColor = Color.FromHex("#C7C7C7");
-            await Task.Delay(60);
-            if(no_char > 0)
+            await Task.Delay(50);
+            if (no_char > 0)
             {
                 current_opt = current_opt.Remove(current_opt.Length - 1, 1);
                 current_opt_below = equal(current_opt);
                 Main_number_add.Text = current_opt + " ";
                 second_number_add.Text = current_opt_below + "  ";
-                no_char --;
-                char l = current_opt[current_opt.Length - 1];
-                if (l == '+' || l == '-' || l == '÷' || l == '×') {
-                    opt = 1;
+                no_char = current_opt.Length;
+                try
+                {
+                    char l = current_opt[no_char - 1];
+                    if (l == '+' || l == '-' || l == '÷' || l == '×')
+                    {
+                        opt = 1;
+                    }
+                    else
+                    {
+                        opt = 0;
+                    }
                 }
-                else { 
-                    opt = 0;
-                }
+                catch { }
             }
             btn.BackgroundColor = Color.Transparent;
 
@@ -143,8 +138,9 @@ namespace calculator_xamarin
                 {
                     current_opt = "";
                     opt = 0;
-                    no_char = 0;
-                }else if (btn_text == "Bracket")
+                    no_char = current_opt.Length;
+                }
+                else if (btn_text == "Bracket")
                 {
                     if (no_char < 21)
                     {
@@ -153,7 +149,7 @@ namespace calculator_xamarin
                             current_opt += "(";
                             bra = 1;
                             opt = 0;
-                            no_char ++;
+                            no_char = current_opt.Length;
                         }
                         else
                         {
@@ -169,7 +165,7 @@ namespace calculator_xamarin
                                     current_opt += ")";
                                     bra = 0;
                                     opt = 0;
-                                    no_char ++;
+                                    no_char = current_opt.Length;
                                 }
                             }
                         }
@@ -178,6 +174,7 @@ namespace calculator_xamarin
                 else
                 {
                     current_opt = equal(current_opt);
+                    no_char = current_opt.Length;
                     current_opt_below = "";
                     opt = 0;
                 }
@@ -199,7 +196,7 @@ namespace calculator_xamarin
                                     {
                                         current_opt += btn_text;
                                         opt = 1;
-                                        no_char ++;
+                                        no_char = current_opt.Length;
                                     }
                                 }
                             }
@@ -207,15 +204,62 @@ namespace calculator_xamarin
                             {
                                 current_opt += btn_text;
                                 opt = 1;
-                                no_char ++;
+                                no_char = current_opt.Length;
                             }
                         }
                     }
                     else
                     {
-                        current_opt += btn_text;
-                        opt = 0;
-                        no_char ++;
+                        if (btn_text == ".")
+                        {
+                            List<string> tex = new List<string>();
+                            string s = "";
+                            foreach (char t in current_opt)
+                            {
+                                if (t == '+' || t == '-' || t == '÷' || t == '×')
+                                {
+                                    tex.Add(s);
+                                    s = "";
+                                }
+                                else
+                                {
+                                    s += t;
+                                }
+                            }
+                            if (s != "")
+                            {
+                                tex.Add(s);
+                            }
+                            if (tex.Count == 0)
+                            {
+                                current_opt += btn_text;
+                                no_char = current_opt.Length;
+                            }
+                            else
+                            {
+                                string last_num = tex[tex.Count - 1];
+                                int f = 0;
+                                foreach (char tt in last_num)
+                                {
+                                    if (tt == '.')
+                                    {
+                                        f = 1;
+                                        break;
+                                    }
+                                }
+                                if (f == 0)
+                                {
+                                    current_opt += btn_text;
+                                    no_char = current_opt.Length;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            current_opt += btn_text;
+                            opt = 0;
+                            no_char = current_opt.Length;
+                        }
                     }
                 }
             }
